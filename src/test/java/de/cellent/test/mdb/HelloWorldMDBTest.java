@@ -33,20 +33,18 @@ public class HelloWorldMDBTest {
 			TextMessage tMsg = session.createTextMessage();
 			tMsg.setText("HelloWorld");
 			sender.send(tMsg);
-			
-			sender.close();
-			session.close();
-			con.close();
-			context.close();
 		
 		} catch (JMSException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		} catch (NamingException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		} finally {
+			try {
+				con.close();
+			} catch (JMSException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
-		
 	}
 	
 	public static void init() {
